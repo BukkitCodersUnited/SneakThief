@@ -1,0 +1,7 @@
+name: ${project.name}
+version: ${project.version} b${buildNumber}
+description: ${project.description}
+author: ${project.organization.name}
+
+main: me.arrdev.sneakthief.SneakThief
+softdepend: [Citizens]
