@@ -9,7 +9,7 @@
 	<description>A stealing plugin.</description>
 
 	<properties>
-		<bukkitVersion>LATEST</bukkitVersion>
+		<bukkitVersion>RELEASE</bukkitVersion>
 		<buildNumber>0</buildNumber>
 	</properties>
 
