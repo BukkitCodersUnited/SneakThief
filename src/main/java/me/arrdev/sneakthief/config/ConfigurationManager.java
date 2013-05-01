@@ -43,7 +43,7 @@ public class ConfigurationManager {
 		successPercentage = conf
 				.getDouble("pickpocket.success-percentage", .5D);
 		DecimalFormat twoDForm = new DecimalFormat("#.##");
-		successPercentage = Double.valueOf(twoDForm.format(successPercentage));
+		successPercentage = Double.parseDouble(twoDForm.format(successPercentage));
 		if(successPercentage > 1) successPercentage = 1;
 		damageOnFailure = conf.getInt("pickpocket.damage-on-failure", 2);
 		alertPlayer = conf.getBoolean("pickpocket.alert-player", true);
