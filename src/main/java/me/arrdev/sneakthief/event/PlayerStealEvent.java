@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerEvent;
 public class PlayerStealEvent extends PlayerEvent implements Cancellable {
 
 	private boolean cancelled = false;
-	
+
 	private final Player pp;
 
 	private static final HandlerList handlers = new HandlerList();
@@ -19,7 +19,9 @@ public class PlayerStealEvent extends PlayerEvent implements Cancellable {
 	}
 
 	/**
-	 * Returns the player who has been robbed by {@link #getPlayer() getPlayer()}.
+	 * Returns the player who has been robbed by {@link #getPlayer()
+	 * getPlayer()}.
+	 * 
 	 * @return Player who has been robbed
 	 */
 	public Player getRobbedPlayer() {

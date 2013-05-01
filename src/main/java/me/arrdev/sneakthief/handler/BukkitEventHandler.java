@@ -1,5 +1,6 @@
 package me.arrdev.sneakthief.handler;
 
+import me.arrdev.sneakthief.config.ConfigurationManager;
 import me.arrdev.sneakthief.event.PlayerStealEvent;
 
 import org.bukkit.Bukkit;
@@ -18,12 +19,17 @@ public class BukkitEventHandler implements Listener {
 
 		Player player = e.getPlayer();
 		Player pp = (Player) e.getRightClicked();
+		PlayerInventory inv = pp.getInventory();
 
 		if (!player.isSneaking()
 				|| pp.hasPermission("sneakthief.pickpocket.nosteal")
 				|| !player.hasPermission("sneakthief.pickpocket.cansteal")
-				|| (pp.hasMetadata("NPC")))
+				|| (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
 			return;
+
+		if (ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")) {
+
+		}
 
 		// TODO: Check other stuff.
 
@@ -32,7 +38,6 @@ public class BukkitEventHandler implements Listener {
 		if (ev.isCancelled())
 			return;
 
-		PlayerInventory inv = pp.getInventory();
 		player.openInventory(inv);
 	}
 
