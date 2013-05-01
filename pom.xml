@@ -9,6 +9,7 @@
 	<description>A stealing plugin.</description>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bukkitVersion>RELEASE</bukkitVersion>
 		<buildNumber>0</buildNumber>
 	</properties>
