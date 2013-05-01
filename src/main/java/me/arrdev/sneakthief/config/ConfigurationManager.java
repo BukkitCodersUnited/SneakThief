@@ -71,6 +71,8 @@ public class ConfigurationManager {
 						Short.parseShort(is[0]));
 			}
 		}
+		
+		SneakThief.getInstance().saveConfig();
 	}
 
 	public static Configuration getConfiguration() {
