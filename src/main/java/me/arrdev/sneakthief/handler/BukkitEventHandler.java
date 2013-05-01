@@ -1,16 +1,23 @@
 package me.arrdev.sneakthief.handler;
 
+import java.util.Random;
+
 import me.arrdev.sneakthief.config.ConfigurationManager;
+import me.arrdev.sneakthief.event.NPCStealEvent;
 import me.arrdev.sneakthief.event.PlayerStealEvent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 public class BukkitEventHandler implements Listener {
+
+	private Random rand = new Random();
 
 	@EventHandler
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent e) {
@@ -19,26 +26,62 @@ public class BukkitEventHandler implements Listener {
 
 		Player player = e.getPlayer();
 		Player pp = (Player) e.getRightClicked();
-		PlayerInventory inv = pp.getInventory();
+		Inventory inv = pp.getInventory();
 
 		if (!player.isSneaking()
-				|| pp.hasPermission("sneakthief.pickpocket.nosteal")
-				|| !player.hasPermission("sneakthief.pickpocket.cansteal")
+				|| player.getLocation().distanceSquared(pp.getLocation()) > ConfigurationManager
+						.getPlayerDistanceSquared()
+				|| pp.hasPermission("pickpocket.nosteal")
+				|| !player.hasPermission("pickpocket.cansteal")
 				|| (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
 			return;
 
-		if (ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")) {
+		if (ConfigurationManager.getSuccessPercentage() < 1
+				&& (rand.nextInt(100) / 100) >= ConfigurationManager
+						.getSuccessPercentage()) {
+			return;
+		}
 
+		PlayerStealEvent ev = new PlayerStealEvent(player, pp);
+
+		if (ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")) {
+			inv = Bukkit.createInventory(pp, InventoryType.PLAYER);
+
+			int items = rand.nextInt(ConfigurationManager.getMaxItems() + 1
+					- ConfigurationManager.getMinItems())
+					+ ConfigurationManager.getMinItems();
+
+			if (items > 0)
+				for (int i = 0; i < items; i++) {
+					int j = rand.nextInt(ConfigurationManager
+							.getPossibleItems().size());
+					ItemStack is = ConfigurationManager.getPossibleItems().get(
+							j);
+
+					short defDur = is.getType().getMaxDurability();
+					if (is.getDurability() == 0)
+						is.setDurability((short) (rand
+								.nextInt((int) (ConfigurationManager
+										.getMaxDurability() * defDur + 1 - ConfigurationManager
+										.getMinDurability() * defDur)) + ConfigurationManager
+								.getMinDurability() * defDur));
+
+					is.setAmount(rand.nextInt(ConfigurationManager
+							.getMaxStackSize()
+							+ 1
+							- ConfigurationManager.getMinStackSize())
+							+ ConfigurationManager.getMinStackSize());
+				}
+
+			ev = new NPCStealEvent(player, pp, inv);
 		}
 
 		// TODO: Check other stuff.
 
-		PlayerStealEvent ev = new PlayerStealEvent(player, pp);
 		Bukkit.getServer().getPluginManager().callEvent(ev);
 		if (ev.isCancelled())
 			return;
 
 		player.openInventory(inv);
 	}
-
 }
