@@ -38,11 +38,18 @@
 			<artifactId>bukkit</artifactId>
 			<version>${bukkitVersion}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>net.citizensnpcs</groupId>
+			<artifactId>citizensapi</artifactId>
+			<version>2.0.5</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<defaultGoal>clean install</defaultGoal>
-		
+
 		<resources>
 			<resource>
 				<targetPath>.</targetPath>
@@ -53,7 +60,7 @@
 				</includes>
 			</resource>
 		</resources>
-		
+
 		<plugins>
 			<plugin>
 				<groupId>com.sourcesense.maven</groupId>
