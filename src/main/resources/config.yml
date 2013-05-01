@@ -1,6 +1,6 @@
 pickpocket:
     player-distance: 5
-    failure-percentage: 50
+    success-percentage: 0.50
     damage-on-failure: 2
     alert-player: true
     max-tries-before-cooldown: 3
@@ -12,8 +12,8 @@ npc:
         max-items: 3
         min-stack-size: 1
         max-stack-size: 16
-        min-durability-percentage: 50
-        max-durability-percentage: 100
+        min-durability-percentage: 0.50
+        max-durability-percentage: 1.00
         possible-items:
             - 331
             - 272
