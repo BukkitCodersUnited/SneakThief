@@ -75,6 +75,8 @@ public class ConfigurationManager {
 			}
 		}
 		
+		System.out.println(conf.getValues(true));
+		
 		SneakThief.getInstance().saveConfig();
 	}
 
