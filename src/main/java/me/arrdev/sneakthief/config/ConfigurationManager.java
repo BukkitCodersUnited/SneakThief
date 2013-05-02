@@ -15,6 +15,7 @@ public class ConfigurationManager {
 
 	private static int playerDistance = 25;
 	private static double successPercentage = .5D;
+	private static boolean creativeStealing = false;
 	private static int damageOnFailure = 2;
 	private static boolean alertPlayer = true;
 	private static int maxTries = 3;
@@ -46,6 +47,7 @@ public class ConfigurationManager {
 		DecimalFormat twoDForm = new DecimalFormat("#.##");
 		successPercentage = Double.valueOf(twoDForm.format(successPercentage).replace(",", "."));
 		if(successPercentage > 1) successPercentage = 1;
+		creativeStealing = conf.getBoolean("pickpocket.creative-stealing", false);
 		damageOnFailure = conf.getInt("pickpocket.damage-on-failure", 2);
 		alertPlayer = conf.getBoolean("pickpocket.alert-player", true);
 		maxTries = conf.getInt("pickpocket.max-tries-before-cooldown", 3);
@@ -86,6 +88,10 @@ public class ConfigurationManager {
 
 	public static double getSuccessPercentage() {
 		return successPercentage;
+	}
+
+	public static boolean isCreativeStealing() {
+		return creativeStealing;
 	}
 
 	public static int getDamageOnFailure() {

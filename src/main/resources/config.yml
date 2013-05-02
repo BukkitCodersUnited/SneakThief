@@ -1,6 +1,7 @@
 pickpocket:
     player-distance: 5
     success-percentage: 0.50
+    creative-stealing: false
     damage-on-failure: 2
     alert-player: true
     max-tries-before-cooldown: 3

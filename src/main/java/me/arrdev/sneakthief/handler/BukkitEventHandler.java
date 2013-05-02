@@ -5,8 +5,10 @@ import java.util.Random;
 import me.arrdev.sneakthief.config.ConfigurationManager;
 import me.arrdev.sneakthief.event.NPCStealEvent;
 import me.arrdev.sneakthief.event.PlayerStealEvent;
+import me.arrdev.sneakthief.util.Utilities;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,6 +35,8 @@ public class BukkitEventHandler implements Listener {
 						.getPlayerDistanceSquared()
 				|| pp.hasPermission("pickpocket.nosteal")
 				|| !player.hasPermission("pickpocket.cansteal")
+				|| (!ConfigurationManager.isCreativeStealing() && (player
+						.getGameMode() == GameMode.CREATIVE || pp.getGameMode() == GameMode.CREATIVE))
 				|| (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
 			return;
 
@@ -73,7 +77,11 @@ public class BukkitEventHandler implements Listener {
 							+ ConfigurationManager.getMinStackSize());
 				}
 
+			inv = Utilities.arrangeInventory(inv);
+
 			ev = new NPCStealEvent(player, pp, inv);
+		} else {
+			inv = Utilities.arrangeInventory(inv);
 		}
 
 		// TODO: Check other stuff.
