@@ -124,4 +124,5 @@
 		<name>ArrDev</name>
 		<url>http://github.com/ArrDev</url>
 	</organization>
+	<description>A Thief plugin for Bukkit</description>
 </project>
