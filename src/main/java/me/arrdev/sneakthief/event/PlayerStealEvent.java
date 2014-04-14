@@ -19,8 +19,7 @@ public class PlayerStealEvent extends PlayerEvent implements Cancellable {
 	}
 
 	/**
-	 * Returns the player who has been robbed by {@link #getPlayer()
-	 * getPlayer()}.
+	 * Returns the player who has been robbed by {@link #getPlayer()}.
 	 * 
 	 * @return Player who has been robbed
 	 */
