@@ -7,8 +7,7 @@ import org.bukkit.inventory.Inventory;
 public class Utilities {
 
 	public static Inventory arrangeInventory(Inventory oinv) {
-		Inventory inv = Bukkit.getServer().createInventory(oinv.getHolder(),
-				InventoryType.CHEST);
+		Inventory inv = Bukkit.getServer().createInventory(oinv.getHolder(), InventoryType.CHEST);
 
 		for (int i = 0; i <= 35; i++) {
 			inv.setItem(i, oinv.getItem(i));

@@ -30,19 +30,10 @@ public class BukkitEventHandler implements Listener {
 		Player pp = (Player) e.getRightClicked();
 		Inventory inv = pp.getInventory();
 
-		if (!player.isSneaking()
-				|| player.getLocation().distanceSquared(pp.getLocation()) > ConfigurationManager
-						.getPlayerDistanceSquared()
-				|| pp.hasPermission("pickpocket.nosteal")
-				|| !player.hasPermission("pickpocket.cansteal")
-				|| (!ConfigurationManager.isCreativeStealing() && (player
-						.getGameMode() == GameMode.CREATIVE || pp.getGameMode() == GameMode.CREATIVE))
-				|| (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
+		if (!player.isSneaking() || player.getLocation().distanceSquared(pp.getLocation()) > ConfigurationManager.getPlayerDistanceSquared() || pp.hasPermission("pickpocket.nosteal") || !player.hasPermission("pickpocket.cansteal") || (!ConfigurationManager.isCreativeStealing() && (player.getGameMode() == GameMode.CREATIVE || pp.getGameMode() == GameMode.CREATIVE)) || (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
 			return;
 
-		if (ConfigurationManager.getSuccessPercentage() < 1
-				&& (rand.nextInt(100) / 100) >= ConfigurationManager
-						.getSuccessPercentage()) {
+		if (ConfigurationManager.getSuccessPercentage() < 1 && (rand.nextInt(100) / 100) >= ConfigurationManager.getSuccessPercentage()) {
 			return;
 		}
 
@@ -51,30 +42,18 @@ public class BukkitEventHandler implements Listener {
 		if (ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")) {
 			inv = Bukkit.createInventory(pp, InventoryType.PLAYER);
 
-			int items = rand.nextInt(ConfigurationManager.getMaxItems() + 1
-					- ConfigurationManager.getMinItems())
-					+ ConfigurationManager.getMinItems();
+			int items = rand.nextInt(ConfigurationManager.getMaxItems() + 1 - ConfigurationManager.getMinItems()) + ConfigurationManager.getMinItems();
 
 			if (items > 0)
 				for (int i = 0; i < items; i++) {
-					int j = rand.nextInt(ConfigurationManager
-							.getPossibleItems().size());
-					ItemStack is = ConfigurationManager.getPossibleItems().get(
-							j);
+					int j = rand.nextInt(ConfigurationManager.getPossibleItems().size());
+					ItemStack is = ConfigurationManager.getPossibleItems().get(j);
 
 					short defDur = is.getType().getMaxDurability();
 					if (is.getDurability() == 0)
-						is.setDurability((short) (rand
-								.nextInt((int) (ConfigurationManager
-										.getMaxDurability() * defDur + 1 - ConfigurationManager
-										.getMinDurability() * defDur)) + ConfigurationManager
-								.getMinDurability() * defDur));
+						is.setDurability((short) (rand.nextInt((int) (ConfigurationManager.getMaxDurability() * defDur + 1 - ConfigurationManager.getMinDurability() * defDur)) + ConfigurationManager.getMinDurability() * defDur));
 
-					is.setAmount(rand.nextInt(ConfigurationManager
-							.getMaxStackSize()
-							+ 1
-							- ConfigurationManager.getMinStackSize())
-							+ ConfigurationManager.getMinStackSize());
+					is.setAmount(rand.nextInt(ConfigurationManager.getMaxStackSize() + 1 - ConfigurationManager.getMinStackSize()) + ConfigurationManager.getMinStackSize());
 				}
 
 			inv = Utilities.arrangeInventory(inv);

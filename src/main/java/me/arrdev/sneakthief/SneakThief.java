@@ -11,9 +11,8 @@ public class SneakThief extends JavaPlugin {
 
 	public void onEnable() {
 		new ConfigurationManager(getConfig());
-		
-		getServer().getPluginManager().registerEvents(new BukkitEventHandler(),
-				this);
+
+		getServer().getPluginManager().registerEvents(new BukkitEventHandler(), this);
 	}
 
 	public static SneakThief getInstance() {

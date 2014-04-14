@@ -42,11 +42,11 @@ public class ConfigurationManager {
 		possibleItems.clear();
 
 		playerDistance = conf.getInt("pickpocket.player-distance", 5);
-		successPercentage = conf
-				.getDouble("pickpocket.success-percentage", .5D);
+		successPercentage = conf.getDouble("pickpocket.success-percentage", .5D);
 		DecimalFormat twoDForm = new DecimalFormat("#.##");
 		successPercentage = Double.valueOf(twoDForm.format(successPercentage).replace(",", "."));
-		if(successPercentage > 1) successPercentage = 1;
+		if (successPercentage > 1)
+			successPercentage = 1;
 		creativeStealing = conf.getBoolean("pickpocket.creative-stealing", false);
 		damageOnFailure = conf.getInt("pickpocket.damage-on-failure", 2);
 		alertPlayer = conf.getBoolean("pickpocket.alert-player", true);
@@ -58,10 +58,8 @@ public class ConfigurationManager {
 		maxItems = conf.getInt("npc.inventory.max-items", 3);
 		minStackSize = conf.getInt("npc.inventory.min-stack-size", 1);
 		maxStackSize = conf.getInt("npc.inventory.max-stack-size", 1);
-		minDurability = conf.getDouble(
-				"npc.inventory.min-durability-percentage", .5D);
-		maxDurability = conf.getDouble(
-				"npc.inventory.max-durability-percentage", .5D);
+		minDurability = conf.getDouble("npc.inventory.min-durability-percentage", .5D);
+		maxDurability = conf.getDouble("npc.inventory.max-durability-percentage", .5D);
 
 		List<String> pi = conf.getStringList("npc.inventory.possible-items");
 		for (String i : pi) {
@@ -70,13 +68,12 @@ public class ConfigurationManager {
 				new ItemStack(Integer.parseInt(is[0]));
 			}
 			if (is.length == 2) {
-				new ItemStack(Integer.parseInt(is[0]), 1,
-						Short.parseShort(is[0]));
+				new ItemStack(Integer.parseInt(is[0]), 1, Short.parseShort(is[0]));
 			}
 		}
-		
+
 		System.out.println(conf.getValues(true));
-		
+
 		SneakThief.getInstance().saveConfig();
 	}
 
