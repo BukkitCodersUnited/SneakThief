@@ -6,8 +6,8 @@ import java.util.List;
 
 import me.arrdev.sneakthief.SneakThief;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
-import org.bukkit.inventory.ItemStack;
 
 public class ConfigurationManager {
 
@@ -28,7 +28,7 @@ public class ConfigurationManager {
 	private static int maxStackSize = 16;
 	private static double minDurability = .5D;
 	private static double maxDurability = 1.0D;
-	private static List<ItemStack> possibleItems = new ArrayList<ItemStack>();
+	private static List<Material> possibleItems = new ArrayList<Material>();
 
 	public ConfigurationManager(Configuration conf) {
 		ConfigurationManager.conf = conf;
@@ -63,13 +63,9 @@ public class ConfigurationManager {
 
 		List<String> pi = conf.getStringList("npc.inventory.possible-items");
 		for (String i : pi) {
-			String[] is = i.split(":");
-			if (is.length == 1) {
-				new ItemStack(Integer.parseInt(is[0]));
-			}
-			if (is.length == 2) {
-				new ItemStack(Integer.parseInt(is[0]), 1, Short.parseShort(is[0]));
-			}
+			Material m = Material.matchMaterial(i);
+			if (m != null)
+				possibleItems.add(m);
 		}
 
 		System.out.println(conf.getValues(true));
@@ -141,7 +137,7 @@ public class ConfigurationManager {
 		return maxDurability;
 	}
 
-	public static List<ItemStack> getPossibleItems() {
+	public static List<Material> getPossibleItems() {
 		return possibleItems;
 	}
 

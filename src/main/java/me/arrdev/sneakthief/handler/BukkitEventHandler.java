@@ -47,7 +47,7 @@ public class BukkitEventHandler implements Listener {
 			if (items > 0)
 				for (int i = 0; i < items; i++) {
 					int j = rand.nextInt(ConfigurationManager.getPossibleItems().size());
-					ItemStack is = ConfigurationManager.getPossibleItems().get(j);
+					ItemStack is = new ItemStack(ConfigurationManager.getPossibleItems().get(j));
 
 					short defDur = is.getType().getMaxDurability();
 					if (is.getDurability() == 0)
