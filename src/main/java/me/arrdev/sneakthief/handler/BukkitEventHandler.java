@@ -1,6 +1,10 @@
 package me.arrdev.sneakthief.handler;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import me.arrdev.sneakthief.config.ConfigurationManager;
 import me.arrdev.sneakthief.event.NPCStealEvent;
@@ -8,6 +12,7 @@ import me.arrdev.sneakthief.event.PlayerStealEvent;
 import me.arrdev.sneakthief.util.Utilities;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,6 +25,8 @@ import org.bukkit.inventory.ItemStack;
 public class BukkitEventHandler implements Listener {
 
 	private Random rand = new Random();
+	
+	private Map<UUID, Long> cooldowns = new HashMap<UUID, Long>();
 
 	@EventHandler
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent e) {
@@ -32,10 +39,19 @@ public class BukkitEventHandler implements Listener {
 
 		if (!player.isSneaking() || player.getLocation().distanceSquared(pp.getLocation()) > ConfigurationManager.getPlayerDistanceSquared() || pp.hasPermission("pickpocket.nosteal") || !player.hasPermission("pickpocket.cansteal") || (!ConfigurationManager.isCreativeStealing() && (player.getGameMode() == GameMode.CREATIVE || pp.getGameMode() == GameMode.CREATIVE)) || (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
 			return;
-
-		if (ConfigurationManager.getSuccessPercentage() < 1 && (Math.random() >= ConfigurationManager.getSuccessPercentage())) {
-			// TODO: Deal damage to player if necessary
+		
+		if (cooldowns.containsKey(player.getUniqueId()) && System.currentTimeMillis() - cooldowns.get(player.getUniqueId()) <= ConfigurationManager.getCooldown()) {
+			player.sendMessage(ChatColor.RED + "You need to wait " + BigDecimal.valueOf(System.currentTimeMillis() - cooldowns.get(player.getUniqueId()) / 1000).setScale(1, BigDecimal.ROUND_HALF_UP) + " seconds");
 			
+			return;
+		}
+
+		if (ConfigurationManager.getSuccessPercentage() < 1 && (Math.random() > ConfigurationManager.getSuccessPercentage())) {
+			if (ConfigurationManager.getDamageOnFailure() > 0)
+				player.damage(ConfigurationManager.getDamageOnFailure());
+
+			Utilities.notifyPlayerIfNecessary(player, pp, false);
+
 			return;
 		}
 
@@ -70,8 +86,9 @@ public class BukkitEventHandler implements Listener {
 			return;
 
 		player.openInventory(inv);
-		
-		// TODO: Alert player if necessary
-		// TODO: Add cool down
+
+		Utilities.notifyPlayerIfNecessary(player, pp, true);
+
+		cooldowns.put(player.getUniqueId(), System.currentTimeMillis());
 	}
 }

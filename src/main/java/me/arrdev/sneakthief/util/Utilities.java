@@ -1,6 +1,10 @@
 package me.arrdev.sneakthief.util;
 
+import me.arrdev.sneakthief.config.ConfigurationManager;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
@@ -20,6 +24,11 @@ public class Utilities {
 		}
 
 		return inv;
+	}
+	
+	public static void notifyPlayerIfNecessary(Player player, Player pp, boolean success) {
+		if (ConfigurationManager.isAlertPlayer())
+			pp.sendMessage(player.getDisplayName() + ChatColor.RED + " " + (success ? "was a sneaky bastard and stole from you!" : "tried to steal from you but failed!"));
 	}
 
 }
