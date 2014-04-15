@@ -13,7 +13,7 @@ public class ConfigurationManager {
 
 	private static Configuration conf;
 
-	private static int playerDistance = 25;
+	private static int playerDistanceSquared = 25;
 	private static double successPercentage = .5D;
 	private static boolean creativeStealing = false;
 	private static int damageOnFailure = 2;
@@ -41,7 +41,7 @@ public class ConfigurationManager {
 		conf.options().copyDefaults();
 		possibleItems.clear();
 
-		playerDistance = conf.getInt("pickpocket.player-distance", 5);
+		playerDistanceSquared = conf.getInt("pickpocket.player-distance", 5) ^ 2;
 		successPercentage = conf.getDouble("pickpocket.success-percentage", .5D);
 		DecimalFormat twoDForm = new DecimalFormat("#.##");
 		successPercentage = Double.valueOf(twoDForm.format(successPercentage).replace(",", "."));
@@ -78,7 +78,7 @@ public class ConfigurationManager {
 	}
 
 	public static int getPlayerDistanceSquared() {
-		return playerDistance;
+		return playerDistanceSquared;
 	}
 
 	public static double getSuccessPercentage() {
