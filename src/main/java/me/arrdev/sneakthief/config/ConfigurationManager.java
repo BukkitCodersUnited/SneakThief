@@ -51,7 +51,7 @@ public class ConfigurationManager {
 		damageOnFailure = conf.getInt("pickpocket.damage-on-failure", 2);
 		alertPlayer = conf.getBoolean("pickpocket.alert-player", true);
 		maxTries = conf.getInt("pickpocket.max-tries-before-cooldown", 3);
-		cooldown = conf.getInt("pickpocket.cooldown", 5);
+		cooldown = conf.getInt("pickpocket.cooldown", 5) * 1000;
 
 		robnpc = conf.getBoolean("npc.can-rob.npcs", false);
 		minItems = conf.getInt("npc.inventory.min-items", 1);
