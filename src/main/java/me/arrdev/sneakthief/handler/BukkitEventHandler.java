@@ -34,6 +34,8 @@ public class BukkitEventHandler implements Listener {
 			return;
 
 		if (ConfigurationManager.getSuccessPercentage() < 1 && (Math.random() >= ConfigurationManager.getSuccessPercentage())) {
+			// TODO: Deal damage to player if necessary
+			
 			return;
 		}
 
@@ -68,5 +70,8 @@ public class BukkitEventHandler implements Listener {
 			return;
 
 		player.openInventory(inv);
+		
+		// TODO: Alert player if necessary
+		// TODO: Add cool down
 	}
 }
