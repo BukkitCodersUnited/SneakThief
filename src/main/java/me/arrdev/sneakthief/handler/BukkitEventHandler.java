@@ -33,7 +33,7 @@ public class BukkitEventHandler implements Listener {
 		if (!player.isSneaking() || player.getLocation().distanceSquared(pp.getLocation()) > ConfigurationManager.getPlayerDistanceSquared() || pp.hasPermission("pickpocket.nosteal") || !player.hasPermission("pickpocket.cansteal") || (!ConfigurationManager.isCreativeStealing() && (player.getGameMode() == GameMode.CREATIVE || pp.getGameMode() == GameMode.CREATIVE)) || (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
 			return;
 
-		if (ConfigurationManager.getSuccessPercentage() < 1 && (rand.nextInt(100) / 100) >= ConfigurationManager.getSuccessPercentage()) {
+		if (ConfigurationManager.getSuccessPercentage() < 1 && (Math.random() >= ConfigurationManager.getSuccessPercentage())) {
 			return;
 		}
 
@@ -42,7 +42,7 @@ public class BukkitEventHandler implements Listener {
 		if (ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")) {
 			inv = Bukkit.createInventory(pp, InventoryType.PLAYER);
 
-			int items = rand.nextInt(ConfigurationManager.getMaxItems() + 1 - ConfigurationManager.getMinItems()) + ConfigurationManager.getMinItems();
+			int items = ConfigurationManager.getMinItems() + rand.nextInt(ConfigurationManager.getMaxItems() + 1 - ConfigurationManager.getMinItems());
 
 			if (items > 0)
 				for (int i = 0; i < items; i++) {
@@ -53,14 +53,12 @@ public class BukkitEventHandler implements Listener {
 					if (is.getDurability() == 0)
 						is.setDurability((short) (rand.nextInt((int) (ConfigurationManager.getMaxDurability() * defDur + 1 - ConfigurationManager.getMinDurability() * defDur)) + ConfigurationManager.getMinDurability() * defDur));
 
-					is.setAmount(rand.nextInt(ConfigurationManager.getMaxStackSize() + 1 - ConfigurationManager.getMinStackSize()) + ConfigurationManager.getMinStackSize());
+					is.setAmount(ConfigurationManager.getMinStackSize() + rand.nextInt(ConfigurationManager.getMaxStackSize() + 1 - ConfigurationManager.getMinStackSize()));
 				}
 
 			inv = Utilities.arrangeInventory(inv);
 
 			ev = new NPCStealEvent(player, pp, inv);
-		} else {
-			inv = Utilities.arrangeInventory(inv);
 		}
 
 		// TODO: Check other stuff.
