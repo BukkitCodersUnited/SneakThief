@@ -5,6 +5,7 @@
 	<artifactId>sneakthief</artifactId>
 	<version>2.0-SNAPSHOT</version>
 	<name>SneakThief</name>
+	<description>SneakThief is a Bukkit plugin that adds the ability for players to steal from other's inventories. There are ofcourse permissions that, when given to a player, prevent other's from stealing from said player.</description>
 	<inceptionYear>2013</inceptionYear>
 
 	<properties>
@@ -12,6 +13,18 @@
 		<bukkitVersion>RELEASE</bukkitVersion>
 		<buildNumber>0</buildNumber>
 	</properties>
+
+	<organization>
+		<name>ArrDev</name>
+		<url>http://github.com/ArrDev</url>
+	</organization>
+
+	<scm>
+		<connection>http://github.com/ArrDev/SneakThief</connection>
+		<tag>master</tag>
+		<url>scm:git:git://github.com/ArrDev/SneakThief.git</url>
+		<developerConnection>scm:git:git@github.com:ArrDev/SneakThief.git</developerConnection>
+	</scm>
 
 	<repositories>
 		<repository>
@@ -119,10 +132,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<organization>
-		<name>ArrDev</name>
-		<url>http://github.com/ArrDev</url>
-	</organization>
-	<description>A Thief plugin for Bukkit</description>
 </project>
