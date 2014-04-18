@@ -36,6 +36,10 @@ public class ConfigurationManager {
 		reload();
 	}
 
+	
+	/**
+	 * Reloads the configuration from disk.
+	 */
 	public static void reload() {
 		SneakThief.getInstance().reloadConfig();
 		conf.options().copyDefaults();
@@ -73,70 +77,131 @@ public class ConfigurationManager {
 		SneakThief.getInstance().saveConfig();
 	}
 
+	/**
+	 * Returns the Configuration file
+	 * @return the configuration
+	 */
 	public static Configuration getConfiguration() {
 		return conf;
 	}
 
+	/**
+	 * Returns the maximum squared distance between two players to be able to steal.
+	 * If the maximum distance is 5 blocks, then this function will return 25.
+	 * @return the squared maximum distance
+	 */
 	public static int getPlayerDistanceSquared() {
 		return playerDistanceSquared;
 	}
 
+	/**
+	 * Returns the chance of success. The value will always be between 0 and 1.
+	 * @return the success rate
+	 */
 	public static double getSuccessPercentage() {
 		return successPercentage;
 	}
 
+	/**
+	 * If this returns false and the stealing player or the player being robbed is in creative, then the plugin will not allow stealing.
+	 * @return allow creative stealing
+	 */
 	public static boolean isCreativeStealing() {
 		return creativeStealing;
 	}
 
+	/**
+	 * Returns the amount of hearts the robber will be damaged when the rob fails.
+	 * @return the amount of damage
+	 */
 	public static int getDamageOnFailure() {
 		return damageOnFailure;
 	}
 
+	/**
+	 * Returns true if we should alert the player if someone tried to steal from him.
+	 * @return true if we should alert the player
+	 */
 	public static boolean isAlertPlayer() {
 		return alertPlayer;
 	}
 
+	/**
+	 * Gets the amount of tries before cooldown.
+	 * @return amount of tries
+	 */
 	public static int getMaxTries() {
 		return maxTries;
 	}
 
+	/**
+	 * Returns the amount of seconds the player will be in cooldown.
+	 * @return the amount of seconds
+	 */
 	public static int getCooldown() {
 		return cooldown;
 	}
 
-	public static void setCooldown(int cooldown) {
-		ConfigurationManager.cooldown = cooldown;
-	}
-
+	/**
+	 * Returns true if the player should be able to steal from a Citizen's NPC.
+	 * @return true if the player should be able to steal from an NPC
+	 */
 	public static boolean canRobNPC() {
 		return robnpc;
 	}
 
+	/**
+	 * Returns the minimum amount of items in the NPC's inventory.
+	 * @return the minimum amount of items
+	 */
 	public static int getMinItems() {
 		return minItems;
 	}
 
+	/**
+	 * Returns the maximum amount of items in the NPC's inventory.
+	 * @return the maximum amount of items
+	 */
 	public static int getMaxItems() {
 		return maxItems;
 	}
 
+	/**
+	 * Returns the minimum stack size of an item in the NPC's inventory.
+	 * @return the minimum stack size of an item
+	 */
 	public static int getMinStackSize() {
 		return minStackSize;
 	}
 
+	/**
+	 * Returns the maximum stack size of an item in the NPC's inventory.
+	 * @return the maximum stack size of an item
+	 */
 	public static int getMaxStackSize() {
 		return maxStackSize;
 	}
 
+	/**
+	 * Returns the minimum durability of an item in the NPC's inventory. This value should be between 0 and 1 and smaller than {@link #getMaxDurability}.
+	 * @return the minimum durability of an item
+	 */
 	public static double getMinDurability() {
 		return minDurability;
 	}
 
+	/**
+	 * Returns the maximum durability of an item in the NPC's inventory. This value should be between 0 and 1.
+	 * @return the maximum durability of an item
+	 */
 	public static double getMaxDurability() {
 		return maxDurability;
 	}
 
+	/**
+	 * Returns a List of items which can occur in an NPC's inventory.
+	 * @return the list of items
+	 */
 	public static List<Material> getPossibleItems() {
 		return possibleItems;
 	}
