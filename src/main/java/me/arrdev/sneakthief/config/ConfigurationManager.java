@@ -183,7 +183,7 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Returns the minimum durability of an item in the NPC's inventory. This value should be between 0 and 1 and smaller than {@link #getMaxDurability}.
+	 * Returns the minimum durability of an item in the NPC's inventory. This value should be between 0 and 1 and smaller than {@link #getMaxDurability()}.
 	 * @return the minimum durability of an item
 	 */
 	public static double getMinDurability() {
