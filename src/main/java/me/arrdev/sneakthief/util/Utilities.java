@@ -10,6 +10,11 @@ import org.bukkit.inventory.Inventory;
 
 public class Utilities {
 
+	/**
+	 * Converts a player's inventory to a chest inventory.
+	 * @param oinv the inventory to be converted
+	 * @return the converted inventory
+	 */
 	public static Inventory arrangeInventory(Inventory oinv) {
 		Inventory inv = Bukkit.getServer().createInventory(oinv.getHolder(), InventoryType.CHEST);
 
@@ -26,6 +31,13 @@ public class Utilities {
 		return inv;
 	}
 	
+	/**
+	 * This notifies the player if it is necessary.
+	 * @param player the player who's robbing
+	 * @param pp the player being robbed
+	 * @param success if the inventory has been opened
+	 * @see ConfigurationManager#isAlertPlayer()
+	 */
 	public static void notifyPlayerIfNecessary(Player player, Player pp, boolean success) {
 		if (ConfigurationManager.isAlertPlayer())
 			pp.sendMessage(player.getDisplayName() + ChatColor.RED + " " + (success ? "was a sneaky bastard and stole from you!" : "tried to steal from you but failed!"));
