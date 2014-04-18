@@ -74,10 +74,10 @@ public class BukkitEventHandler implements Listener {
 					is.setAmount(ConfigurationManager.getMinStackSize() + rand.nextInt(ConfigurationManager.getMaxStackSize() + 1 - ConfigurationManager.getMinStackSize()));
 				}
 
-			inv = Utilities.arrangeInventory(inv);
-
 			ev = new NPCStealEvent(player, pp, inv);
 		}
+
+		inv = Utilities.arrangeInventory(inv);
 
 		// TODO: Check other stuff.
 
