@@ -36,10 +36,10 @@ public class Utilities {
 	 * @param player the player who's robbing
 	 * @param pp the player being robbed
 	 * @param success if the inventory has been opened
-	 * @see ConfigurationManager#isAlertPlayer()
+	 * @see ConfigurationManager#shouldAlertPlayer()
 	 */
 	public static void notifyPlayerIfNecessary(Player player, Player pp, boolean success) {
-		if (ConfigurationManager.isAlertPlayer())
+		if (ConfigurationManager.shouldAlertPlayer())
 			pp.sendMessage(player.getDisplayName() + ChatColor.RED + " " + (success ? "was a sneaky bastard and stole from you!" : "tried to steal from you but failed!"));
 	}
 

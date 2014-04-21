@@ -37,7 +37,7 @@ public class BukkitEventHandler implements Listener {
 		Player pp = (Player) e.getRightClicked();
 		Inventory inv = pp.getInventory();
 
-		if (!player.isSneaking() || player.getLocation().distanceSquared(pp.getLocation()) > ConfigurationManager.getPlayerDistanceSquared() || pp.hasPermission("pickpocket.nosteal") || !player.hasPermission("pickpocket.cansteal") || (!ConfigurationManager.isCreativeStealing() && (player.getGameMode() == GameMode.CREATIVE || pp.getGameMode() == GameMode.CREATIVE)) || (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
+		if (!player.isSneaking() || player.getLocation().distanceSquared(pp.getLocation()) > ConfigurationManager.getPlayerDistanceSquared() || pp.hasPermission("pickpocket.nosteal") || !player.hasPermission("pickpocket.cansteal") || (!ConfigurationManager.allowCreativeStealing() && (player.getGameMode() == GameMode.CREATIVE || pp.getGameMode() == GameMode.CREATIVE)) || (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
 			return;
 		
 		if (cooldowns.containsKey(player.getUniqueId()) && System.currentTimeMillis() - cooldowns.get(player.getUniqueId()) <= ConfigurationManager.getCooldown()) {

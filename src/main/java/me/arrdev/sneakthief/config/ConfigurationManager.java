@@ -105,7 +105,7 @@ public class ConfigurationManager {
 	 * If this returns false and the stealing player or the player being robbed is in creative, then the plugin will not allow stealing.
 	 * @return allow creative stealing
 	 */
-	public static boolean isCreativeStealing() {
+	public static boolean allowCreativeStealing() {
 		return creativeStealing;
 	}
 
@@ -121,7 +121,7 @@ public class ConfigurationManager {
 	 * Returns true if we should alert the player if someone tried to steal from him.
 	 * @return true if we should alert the player
 	 */
-	public static boolean isAlertPlayer() {
+	public static boolean shouldAlertPlayer() {
 		return alertPlayer;
 	}
 
