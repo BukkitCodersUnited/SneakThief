@@ -36,7 +36,6 @@ public class ConfigurationManager {
 		reload();
 	}
 
-	
 	/**
 	 * Reloads the configuration from disk.
 	 */
