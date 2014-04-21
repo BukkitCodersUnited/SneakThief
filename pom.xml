@@ -34,7 +34,7 @@
 
 		<repository>
 			<id>citizensnpcs-repo</id>
-			<url>http://repo.citizensnpcs.com</url>
+			<url>http://repo.citizensnpcs.co</url>
 		</repository>
 	</repositories>
 
