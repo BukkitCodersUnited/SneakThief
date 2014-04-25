@@ -1,7 +1,9 @@
 package me.arrdev.sneakthief.handler;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -25,8 +27,9 @@ import org.bukkit.inventory.ItemStack;
 public class BukkitEventHandler implements Listener {
 
 	private Random rand = new Random();
-	
+
 	private Map<UUID, Long> cooldowns = new HashMap<UUID, Long>();
+	static Map<UUID, List<UUID>> views = new HashMap<UUID, List<UUID>>();
 
 	@EventHandler
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent e) {
@@ -39,10 +42,10 @@ public class BukkitEventHandler implements Listener {
 
 		if (!player.isSneaking() || player.getLocation().distanceSquared(pp.getLocation()) > ConfigurationManager.getPlayerDistanceSquared() || pp.hasPermission("pickpocket.nosteal") || !player.hasPermission("pickpocket.cansteal") || (!ConfigurationManager.allowCreativeStealing() && (player.getGameMode() == GameMode.CREATIVE || pp.getGameMode() == GameMode.CREATIVE)) || (!ConfigurationManager.canRobNPC() && pp.hasMetadata("NPC")))
 			return;
-		
+
 		if (cooldowns.containsKey(player.getUniqueId()) && System.currentTimeMillis() - cooldowns.get(player.getUniqueId()) <= ConfigurationManager.getCooldown()) {
 			player.sendMessage(ChatColor.RED + "You need to wait " + BigDecimal.valueOf(System.currentTimeMillis() - cooldowns.get(player.getUniqueId()) / 1000).setScale(1, BigDecimal.ROUND_HALF_UP) + " seconds");
-			
+
 			return;
 		}
 
@@ -76,8 +79,6 @@ public class BukkitEventHandler implements Listener {
 
 			ev = new NPCStealEvent(player, pp, inv);
 		}
-
-		inv = Utilities.arrangeInventory(inv);
 
 		// TODO: Check other stuff.
 
