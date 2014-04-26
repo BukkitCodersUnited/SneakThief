@@ -19,7 +19,7 @@ public class PlayerMoveTask implements Runnable {
 
 			for (HumanEntity he : viewers) {
 				Player pp = he instanceof Player ? (Player) he : null;
-				
+
 				if (he == null)
 					continue;
 

@@ -87,7 +87,7 @@ public class BukkitEventHandler implements Listener {
 			return;
 
 		player.openInventory(inv);
-		
+
 		views.add(pp.getUniqueId());
 
 		Utilities.notifyPlayerIfNecessary(player, pp, true);

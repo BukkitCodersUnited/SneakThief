@@ -17,6 +17,7 @@ public class NPCStealEvent extends PlayerStealEvent {
 
 	/**
 	 * Returns the NPC's inventory.
+	 * 
 	 * @return the inventory
 	 */
 	public Inventory getInventory() {

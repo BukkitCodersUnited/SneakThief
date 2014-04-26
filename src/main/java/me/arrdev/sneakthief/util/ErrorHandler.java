@@ -5,8 +5,11 @@ import me.arrdev.sneakthief.config.ConfigurationManager;
 public class ErrorHandler {
 
 	/**
-	 * Prints a informational text about the error and what to copy to the project page.
-	 * @param e a throwable
+	 * Prints a informational text about the error and what to copy to the
+	 * project page.
+	 * 
+	 * @param e
+	 *            a throwable
 	 */
 	public static void printErrorInformation(Throwable e) {
 		System.err.println("An error has occured during runtime of SneakThief.");

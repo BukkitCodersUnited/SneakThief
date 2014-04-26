@@ -82,6 +82,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns the Configuration file
+	 * 
 	 * @return the configuration
 	 */
 	public static Configuration getConfiguration() {
@@ -89,8 +90,10 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Returns the maximum squared distance between two players to be able to steal.
-	 * If the maximum distance is 5 blocks, then this function will return 25.
+	 * Returns the maximum squared distance between two players to be able to
+	 * steal. If the maximum distance is 5 blocks, then this function will
+	 * return 25.
+	 * 
 	 * @return the squared maximum distance
 	 */
 	public static int getPlayerDistanceSquared() {
@@ -99,6 +102,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns the chance of success. The value will always be between 0 and 1.
+	 * 
 	 * @return the success rate
 	 */
 	public static double getSuccessPercentage() {
@@ -106,7 +110,9 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * If this returns false and the stealing player or the player being robbed is in creative, then the plugin will not allow stealing.
+	 * If this returns false and the stealing player or the player being robbed
+	 * is in creative, then the plugin will not allow stealing.
+	 * 
 	 * @return allow creative stealing
 	 */
 	public static boolean allowCreativeStealing() {
@@ -114,7 +120,9 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Returns the amount of hearts the robber will be damaged when the rob fails.
+	 * Returns the amount of hearts the robber will be damaged when the rob
+	 * fails.
+	 * 
 	 * @return the amount of damage
 	 */
 	public static int getDamageOnFailure() {
@@ -122,7 +130,9 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Returns true if we should alert the player if someone tried to steal from him.
+	 * Returns true if we should alert the player if someone tried to steal from
+	 * him.
+	 * 
 	 * @return true if we should alert the player
 	 */
 	public static boolean shouldAlertPlayer() {
@@ -131,6 +141,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Gets the amount of tries before cooldown.
+	 * 
 	 * @return amount of tries
 	 */
 	public static int getMaxTries() {
@@ -139,6 +150,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns the amount of milliseconds the player will be in cooldown.
+	 * 
 	 * @return cooldown in milliseconds
 	 */
 	public static int getCooldown() {
@@ -147,6 +159,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns true if the player should be able to steal from a Citizen's NPC.
+	 * 
 	 * @return true if the player should be able to steal from an NPC
 	 */
 	public static boolean canRobNPC() {
@@ -155,6 +168,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns the minimum amount of items in the NPC's inventory.
+	 * 
 	 * @return the minimum amount of items
 	 */
 	public static int getMinItems() {
@@ -163,6 +177,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns the maximum amount of items in the NPC's inventory.
+	 * 
 	 * @return the maximum amount of items
 	 */
 	public static int getMaxItems() {
@@ -171,6 +186,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns the minimum stack size of an item in the NPC's inventory.
+	 * 
 	 * @return the minimum stack size of an item
 	 */
 	public static int getMinStackSize() {
@@ -179,6 +195,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns the maximum stack size of an item in the NPC's inventory.
+	 * 
 	 * @return the maximum stack size of an item
 	 */
 	public static int getMaxStackSize() {
@@ -186,7 +203,10 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Returns the minimum durability of an item in the NPC's inventory. This value should be between 0 and 1 and smaller than {@link #getMaxDurability()}.
+	 * Returns the minimum durability of an item in the NPC's inventory. This
+	 * value should be between 0 and 1 and smaller than
+	 * {@link #getMaxDurability()}.
+	 * 
 	 * @return the minimum durability of an item
 	 */
 	public static double getMinDurability() {
@@ -194,7 +214,9 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Returns the maximum durability of an item in the NPC's inventory. This value should be between 0 and 1.
+	 * Returns the maximum durability of an item in the NPC's inventory. This
+	 * value should be between 0 and 1.
+	 * 
 	 * @return the maximum durability of an item
 	 */
 	public static double getMaxDurability() {
@@ -203,6 +225,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Returns a List of items which can occur in an NPC's inventory.
+	 * 
 	 * @return the list of items
 	 */
 	public static List<Material> getPossibleItems() {

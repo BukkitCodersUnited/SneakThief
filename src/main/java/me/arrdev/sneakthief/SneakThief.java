@@ -17,7 +17,7 @@ public class SneakThief extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new BukkitEventHandler(), this);
 		getServer().getScheduler().scheduleSyncRepeatingTask(this, new PlayerMoveTask(), 20L, 20L);
 	}
-	
+
 	@Override
 	public void onDisable() {
 		instance = null;
@@ -25,6 +25,7 @@ public class SneakThief extends JavaPlugin {
 
 	/**
 	 * Gets the current instance
+	 * 
 	 * @return the instance
 	 */
 	public static SneakThief getInstance() {
