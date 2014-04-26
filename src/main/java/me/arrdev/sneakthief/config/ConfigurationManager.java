@@ -71,6 +71,8 @@ public class ConfigurationManager {
 			Material m = Material.matchMaterial(i);
 			if (m != null)
 				possibleItems.add(m);
+			else
+				SneakThief.getInstance().getLogger().warning("Unable to read: " + i);
 		}
 
 		System.out.println(conf.getValues(true));
