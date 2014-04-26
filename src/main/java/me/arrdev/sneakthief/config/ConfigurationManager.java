@@ -60,9 +60,9 @@ public class ConfigurationManager {
 		minItems = conf.getInt("npc.inventory.min-items", 1);
 		maxItems = conf.getInt("npc.inventory.max-items", 3);
 		minStackSize = conf.getInt("npc.inventory.min-stack-size", 1);
-		maxStackSize = conf.getInt("npc.inventory.max-stack-size", 1);
+		maxStackSize = conf.getInt("npc.inventory.max-stack-size", 16);
 		minDurability = conf.getDouble("npc.inventory.min-durability-percentage", .5D);
-		maxDurability = conf.getDouble("npc.inventory.max-durability-percentage", .5D);
+		maxDurability = conf.getDouble("npc.inventory.max-durability-percentage", 1D);
 
 		List<String> pi = conf.getStringList("npc.inventory.possible-items");
 		for (String i : pi) {
@@ -134,8 +134,8 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Returns the amount of seconds the player will be in cooldown.
-	 * @return the amount of seconds
+	 * Returns the amount of milliseconds the player will be in cooldown.
+	 * @return cooldown in milliseconds
 	 */
 	public static int getCooldown() {
 		return cooldown;
