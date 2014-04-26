@@ -41,7 +41,7 @@ public class ConfigurationManager {
 	 */
 	public static void reload() {
 		SneakThief.getInstance().reloadConfig();
-		conf.options().copyDefaults();
+		conf.options().copyDefaults(true);
 		possibleItems.clear();
 
 		playerDistanceSquared = conf.getInt("pickpocket.player-distance", 5) ^ 2;
