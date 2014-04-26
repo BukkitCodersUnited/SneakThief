@@ -42,7 +42,7 @@ public class ConfigurationManager {
 	 */
 	public static void reload() {
 		SneakThief.getInstance().reloadConfig();
-		conf.addDefaults(YamlConfiguration.loadConfiguration(SneakThief.getInstance().getResource("config.yml")));
+		conf.setDefaults(YamlConfiguration.loadConfiguration(SneakThief.getInstance().getResource("config.yml")));
 		conf.options().copyDefaults(true);
 		possibleItems.clear();
 
