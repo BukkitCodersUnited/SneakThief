@@ -29,11 +29,11 @@ public class BukkitEventHandler implements Listener {
 	private Random rand = new Random();
 
 	private Map<UUID, Long> cooldowns = new HashMap<UUID, Long>();
-	static Map<UUID, List<UUID>> views = new HashMap<UUID, List<UUID>>();
+	static List<UUID> views = new ArrayList<UUID>();
 
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent e) {
-		if (e.isCancelled() || !(e.getRightClicked() instanceof Player))
+		if (!(e.getRightClicked() instanceof Player))
 			return;
 
 		Player player = e.getPlayer();
@@ -87,6 +87,8 @@ public class BukkitEventHandler implements Listener {
 			return;
 
 		player.openInventory(inv);
+		
+		views.add(pp.getUniqueId());
 
 		Utilities.notifyPlayerIfNecessary(player, pp, true);
 
