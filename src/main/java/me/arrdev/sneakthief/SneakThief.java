@@ -2,6 +2,7 @@ package me.arrdev.sneakthief;
 
 import me.arrdev.sneakthief.config.ConfigurationManager;
 import me.arrdev.sneakthief.handler.BukkitEventHandler;
+import me.arrdev.sneakthief.handler.PlayerMoveTask;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +15,7 @@ public class SneakThief extends JavaPlugin {
 		new ConfigurationManager(getConfig());
 
 		getServer().getPluginManager().registerEvents(new BukkitEventHandler(), this);
+		getServer().getScheduler().scheduleSyncRepeatingTask(this, new PlayerMoveTask(), 20L, 20L);
 	}
 	
 	@Override
