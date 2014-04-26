@@ -16,7 +16,7 @@ npc:
         min-durability-percentage: 0.50
         max-durability-percentage: 1.00
         possible-items:
-            - 331
-            - 272
-            - 351:3
-            - 351:15
+            - redstone
+            - stone sword
+            - dye
+            - bone
