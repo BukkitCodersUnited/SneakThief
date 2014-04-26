@@ -8,6 +8,7 @@ import me.arrdev.sneakthief.SneakThief;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 public class ConfigurationManager {
 
@@ -41,6 +42,7 @@ public class ConfigurationManager {
 	 */
 	public static void reload() {
 		SneakThief.getInstance().reloadConfig();
+		conf.addDefaults(YamlConfiguration.loadConfiguration(SneakThief.getInstance().getResource("config.yml")));
 		conf.options().copyDefaults(true);
 		possibleItems.clear();
 
