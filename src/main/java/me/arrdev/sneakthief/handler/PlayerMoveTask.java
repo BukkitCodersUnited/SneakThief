@@ -1,5 +1,6 @@
 package me.arrdev.sneakthief.handler;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ public class PlayerMoveTask implements Runnable {
 
 	@Override
 	public void run() {
-		for (UUID uid : BukkitEventHandler.views) {
+		for (UUID uid : new ArrayList<UUID>(BukkitEventHandler.views)) {
 			Player player = Bukkit.getPlayer(uid);
 			List<HumanEntity> viewers = player.getInventory().getViewers();
 
@@ -24,7 +25,11 @@ public class PlayerMoveTask implements Runnable {
 					continue;
 
 				if (player.getLocation().distanceSquared(pp.getLocation()) > ConfigurationManager.getPlayerDistanceSquared()) {
-					// close inventory if still open
+					pp.closeInventory();
+
+					if (viewers.size() == 1) {
+						BukkitEventHandler.views.remove(uid);
+					}
 				}
 			}
 		}
